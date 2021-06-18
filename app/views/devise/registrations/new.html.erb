@@ -64,7 +64,12 @@
     <% end %>
   </div>
   <div class="row no-gutters">
-    <%= render "devise/shared/links" %>
+    <h5 class="text-dark bg-light p-1 mb-0">既に登録済みの方</h5>
+  </div>
+  <div class="row no-gutters">
+    <%= link_to "こちら", new_customer_session_path %>からログインしてください。
   </div>
 
 </div>
+
+<!--<%= render "devise/shared/links" %>-->
