@@ -1,0 +1,2 @@
+class AddresssController < ApplicationController
+end
