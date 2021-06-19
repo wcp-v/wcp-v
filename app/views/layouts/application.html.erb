@@ -18,7 +18,7 @@
         </button>
         <% if admin_signed_in? %>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <%= "ログインユーザー：" + customer.last_name %>
+            <!--%= "ログインユーザー：" + customer.last_name %>-->
             <ul class="navbar-nav ml-auto">
               <li class="nav-item nav-link ml-auto"><%= link_to "商品一覧", admin_items_path %></li>
               <li class="nav-item nav-link ml-auto"><%= link_to "会員一覧", admin_customers_path %></li>
