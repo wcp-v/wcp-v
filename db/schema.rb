@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.integer "user_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -71,6 +74,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.boolean "is_active"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -78,6 +83,9 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "status"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -88,6 +96,9 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.integer "total_payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.integer "status"
+    t.integer "payment_option"
   end
 
   create_table "users", force: :cascade do |t|
