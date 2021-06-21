@@ -42,6 +42,11 @@
           <% end %>
         </td>
       </tr>
+      <tr>
+        <th style="border:none;"></th>
+        <td style="border:none;"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success mx-auto" %></td>
+        <td style="border:none;"><%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary mx-auto"%></td>
+      </tr>
     </table>
   </div>
 </div>
