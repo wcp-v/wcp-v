@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row no-gutters my-5">
+    <h5 class="text-dark bg-light p-1 mb-0">商品一覧</h5>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item|%>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td><%= item.price %>円</td>
+            <td><%= item.genre.name %></td>
+            <td>
+              <% if item.is_active == true %>
+                <p class="text-secondary">販売中</p>
+              <% else %>
+                <p class="text-success">販売停止</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        
+        <div class="row">
+          <div class="text-center mx-auto">
+            <!--%= paginate @items %> kaminari導入後にコメントアウト直す-->
+          </div>
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>

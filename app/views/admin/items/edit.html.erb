@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row no-gutters my-5">
+    <h5 class="text-dark bg-light p-1 mb-0">商品編集</h5>
+  </div>
+  <div class="row no-gutters">
+    <div class="my-3">
+      <%= form_with model: @item, url: admin_item_path, method: :patch, local:true do |f| %>
+        <table class="table table-borderless">
+          <tr class="d-flex">
+            <th>商品画像</th>
+            <td></td>
+            <td><%= f.attachment_field :image %></td>
+          </tr>
+          <tr class="d-flex">
+            <th>商品名　</th>
+            <td></td>
+            <td><%= f.text_field :name, placeholder: "商品名" %></td>
+          </tr>
+          <tr class="d-flex">
+            <th>商品説明</th>
+            <td></td>
+            <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %></td>
+          </tr>
+          <tr class="d-flex">
+            <th>ジャンル</th>
+            <td></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --" %></td>
+          </tr>
+          <tr class="d-flex">
+            <th>税抜価格</th>
+            <td></td>
+            <td><%= f.text_field :price, placeholder: "1000" %>円</td>
+          </tr>
+          <tr class="d-flex">
+            <th>販売ステータス</th>
+            <td></td>
+            <td>
+              <%= f.radio_button :is_active, :true %>
+          　   <%= f.label :is_active, "販売中", {value: :true } %>
+          　   <%= f.radio_button :is_active, :false %>
+          　   <%= f.label :is_active, "販売停止中", {value: :false } %>
+    　       </td>
+          </tr>
+        </table>
+
+        <div class="text-center my-5">
+          <%= f.submit '変更を保存', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
