@@ -15,8 +15,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
-    # @items = Item.all.page(params[:page]).per(10)    kaminari導入後にコメントアウト消して、一行上の記述を消す
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def show
