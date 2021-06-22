@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row no-gutters my-5">
+    <h5 class="text-dark bg-light p-1 mb-0">商品詳細</h5>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <div class="text-left mt-5">
+        <%= attachment_image_tag(@item, :image, :fill, 400, 300) %>
+      </div>
+    </div>
+
+    <div class="my-5 col-7">
+      <table class="table table-hover table-borderless">
+        <tr class="d-flex">
+          <th class="col-4">商品名</th>
+          <td class="col-4"><%= @item.name %></td>
+        </tr>
+        <tr class="d-flex">
+          <th class="col-4">商品説明</th>
+          <td class="col-4"><%= @item.introduction %></td>
+        </tr>
+        <tr class="d-flex">
+          <th class="col-4">ジャンル</th>
+          <td class="col-4"><%= @item.genre.name %></td>
+        </tr>
+        <tr class="d-flex">
+          <th class="col-4">税抜価格</th>
+          <td class="col-4"><%= @item.price.to_s(:delimited) %>円</td> 　　　<!--:delimited 数値の３桁ごとにカンマを置くメソッド-->
+        </tr>
+        <tr class="d-flex">
+          <th class="col-4">販売ステータス</th>
+          <th class="col-4">
+            <% if @item.is_active == true %>
+              <p>販売中</p>
+            <% else %>
+              <p>販売停止中</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="text-center my-5">
+      <%= button_to '編集する', edit_admin_item_path(@item), method: :get, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
