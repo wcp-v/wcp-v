@@ -1,6 +1,4 @@
 class Admin::ItemsController < ApplicationController
-  # before_action :set_item, only: [:show, :edit, :update]
-  # before_action :set_genres, only: [:new, :edit, :index, :create, :update]
   before_action :authenticate_admin!  #ログイン済のユーザのみアクセスを許可
 
   def new
@@ -9,20 +7,32 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_item_path(@item)
+    if @item.save
+      redirect_to admin_item_path(@item)   #notice: "商品を追加しました" フラッシュメッセージについては相談
+    else
+      render :new
+    end
   end
 
   def index
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item) #notice: "商品を更新しました。" フラッシュメッセージについては相談
+    else
+      render :edit
+    end 
   end
 
   private
