@@ -4,7 +4,7 @@
   </div>
   <div class="row no-gutters">
     <div class="my-3">
-      <%= form_with model: @item, url: admin_item_path, method: :patch, local:true do |f| %>
+      <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local:true do |f| %>
         <table class="table table-borderless">
           <tr class="d-flex">
             <th>商品画像</th>
