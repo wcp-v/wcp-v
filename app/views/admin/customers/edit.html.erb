@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <h5 class="text-dark bg-light p-1 mb-0"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h5>
+  </div>
+    <%= form_with model: [:admin, @customer], url: admin_customer_path(@customer), local: true, method: :patch do |f| %>
+    <table class="table">
+      <tr>
+        <th style="border:none;">会員ID</th>
+        <td style="border:none;"><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">氏名</th>
+        <td style="border:none;"><%= f.text_field :last_name, autofocus: true %></td>
+        <td style="border:none;"><%= f.text_field :first_name %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">フリガナ</th>
+        <td style="border:none;"><%= f.text_field :last_name_kana %></td>
+        <td style="border:none;"><%= f.text_field :first_name_kana %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">郵便番号</th>
+        <td style="border:none;"><%= f.text_field :postcode %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">住所</th>
+        <td style="border:none;"><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">電話番号</th>
+        <td style="border:none;"><%= f.text_field :telephone_number %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">メールアドレス</th>
+        <td style="border:none;"><%= f.email_field :email %></td>
+      </tr>
+      <tr>
+        <th style="border:none;">会員ステータス</th>
+        <td style="border:none;">
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted, "退会済"%>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted, "有効" %>
+        </td>
+      </tr>
+      <tr>
+        <th style="border:none;"></th>
+        <td style="border:none;"><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+      </tr>
+    </table>
+    <% end %>
+</div>
