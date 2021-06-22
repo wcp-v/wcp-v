@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row no-gutters my-5">
     <h5 class="text-dark bg-light p-1 mb-0">商品一覧</h5>
+    <%= link_to new_admin_item_path do %>
+      <div class="float-right">
+        <button type="button" class="btn btn-dark rounded-circle p-0" style="width:3rem;height:3rem;">＋</button>   <!--右寄せにする-->
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <table class="table">
