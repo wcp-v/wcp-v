@@ -12,7 +12,11 @@
               <% end %>
             </p>
             <p><%= item.name %></p>
-            <p>¥<%= item.price.to_s(:delimited) %></p>
+            <% if item.is_active == true %>
+              <p>¥<%= item.price.to_s(:delimited) %></p>
+            <% else %>
+              <p>売り切れ</p>
+            <% end %>
           </div>
         <% end %>
       </div>

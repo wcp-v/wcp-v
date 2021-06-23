@@ -1,1 +1,36 @@
-aaaaa
+<div class="container">
+  <div class="row my-4">
+    <div class="col">
+      <div class="text-center">
+        <div>
+          <p>
+            <span>ようこそ、ながのCAKEへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+              購入には会員登録が必要になります。<br>
+            </span>
+          </p>
+          <%= image_tag 'top_image.jpg', width: '60%', height: '70%' %>
+        </div>
+      </div>
+
+      <h3 class="my-5">新着商品</h3>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <% @items.each do |item| %>
+          <% if item.is_active == true %>  <!--販売停止中の場合表示されない-->
+            <div style="margin-right: 10px;">
+              <p>
+                <%= link_to item_path(item) do %>
+                <%= attachment_image_tag item, :image, size: "180x100" %>
+                <% end %>
+              </p>
+              <p><%= item.name %></p>
+              <p>¥<%= item.price.to_s(:delimited) %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <p style="text-align: right; margin-bottom: 0;"><%= link_to '全ての商品を見る>', items_path %></p>
+    </div>
+  </div>
+</div>
