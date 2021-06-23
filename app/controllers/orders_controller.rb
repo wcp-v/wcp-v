@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
       include ApplicationHelper
   
-  before_action :to_confirm, only: [:show]
+  
   before_action :authenticate_customer!
   
   def new
@@ -18,14 +18,14 @@ class OrdersController < ApplicationController
     obj[:payment] = obj[:payment].to_i
     @order = Order.new(obj)
     if params[:order][:address_a] == "0"
-      @order.post_address = current_customer.post_number
-      @order.street_address = current_customer.street_address
+      @order.postcode = current_customer.postcode
+      @order.address = current_customer.address
       @order.address = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_a] == "1"
       @sta = params[:order][:order].to_i
       @order_address = Address.find(@sta)
-      @order.postcode = @order_address.post_address
-      @order.street_address  = @order_address.street_address
+      @order.postcode = @order_address.postcode
+      @order.address  = @order_address.address
       @order.address  = @order_address.address
     elsif params[:order][:address_a] == "2"
       @order.post_address = params[:order][:postcode]
@@ -58,15 +58,12 @@ class OrdersController < ApplicationController
   end
   
   private
-  def order_params
-    params.require(:order).permit(:shipping_cost, :payment, :postcode, :address, :destination)
-  end
-  
+ def order_params
+  params.require(:order).permit(:postcode, :address,  :shipping_cost, :total_payment, :payment_option, :status)
+ end
+
+
   def address_params
-    params.require(:order).permit(:postcode, :address, :destination)
-  end
-  
-  def to_confirm
-    redirect_to customer_items_path if params[:id] == "confirm"
+    params.require(:order).permit(:payment, :address_a, :postcode, :name, :address, :order)
   end
 end

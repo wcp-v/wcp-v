@@ -20,19 +20,19 @@
     		        <td class="text-left border border-dark">
     		         <%= order.postcode %><br>
     		         <%= order.address %><br>
-    		         <%= order.destination %>
+    		         <%= order.name %>
     		        </td>
     		        <td class="border border-dark">
-    		         <% order.item_orders.each do |item_order| %>
-    		          <%= item_order.item.name %><br>
+    		         <% order.order_items.each do |oder_item| %>
+    		          <%= order.item.name %><br>
     	           <% end %>
     		        </td>
     		        <td class="text-right border border-dark">
-    		         <%= order.tax_price.to_s(:delimited) %>円
+    		         <%= order.shipping_cost.to_s(:delimited) %>円
     		        </td>
     		        
     		        <td class="border border-dark">
-    		         <%= order.order_status %>
+    		         <%= order.status %>
     		        </td>
          	      <td class="border border-dark">
        	         <%= link_to "表示する", customer_order_path(order), class: "btn btn-primary" %>
