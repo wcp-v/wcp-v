@@ -26,7 +26,7 @@
             </span>
           </div>
           <div class="admin-order-post">
-            <%= @order.destination %>
+            <%= @order.name %>
           </div>
         </td>
       </tr>
@@ -59,9 +59,9 @@
         <% @order.order_items.each do |order_item| %>
           <tr>
             <td><%= order_item.item.name %></td>
-            <td><%= order_item.tax_price.to_s(:delimited) %></td>
-            <td class="text-center"><%= order_item.quantity.to_s(:delimited) %></td>
-            <td class="text-center"><%= (order_item.tax_price.to_i * order_item.quantity.to_i).to_s(:delimited) %></td>
+            <td><%= order_item.price.to_s(:delimited) %></td>
+            <td class="text-center"><%= order_item.count.to_s(:delimited) %></td>
+            <td class="text-center"><%= (order_item.price.to_i * order_item.count.to_i).to_s(:delimited) %></td>
             <td>
               <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
                 <%= f.select :maiking_status, options_for_select(OrderItem.maiking_statuses, selected: OrderItem.maiking_statuses[order_item.maiking_status]) %>

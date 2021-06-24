@@ -12,10 +12,10 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-@cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items
     @total = 0
     obj = address_params
-    obj[:payment] = obj[:payment].to_i
+    obj[total_payment] = obj[:total_payment].to_i
     @order = Order.new(obj)
     if params[:order][:address_a] == "0"
       @order.postcode = current_customer.postcode
@@ -28,8 +28,8 @@ class OrdersController < ApplicationController
       @order.address  = @order_address.address
       @order.address  = @order_address.address
     elsif params[:order][:address_a] == "2"
-      @order.post_address = params[:order][:postcode]
-      @order.street_address = params[:order][:address]
+      @order.address = params[:order][:postcode]
+      @order.address = params[:order][:address]
       @order.address = params[:order][:address]
     end
   end
@@ -37,15 +37,15 @@ class OrdersController < ApplicationController
   def create
     @customer = current_customer
     obj = order_params
-    obj[:payment] = obj[:payment].to_i
+    obj[:total_payment] = obj[:total_payment].to_i
     @order = Order.new(obj)
     @order.customer_id = current_customer.id
     @order.save
-    create_all_ordered_products(@order)
-    redirect_to orders_complete_path
+    create_all_ordered_items(@order)
+    redirect_to orders_thanks_path
   end
 
-  def complete
+  def thanks
   end
   
   def index
@@ -58,12 +58,25 @@ class OrdersController < ApplicationController
   end
   
   private
+  
+  def create_all_ordered_items(order)
+    cart_items = current_customer.cart_items
+    cart_items.each do |cart_item|
+     order_item = OrderItem.new
+     order_item.order_id = order.id
+     order_item.item_id = cart_item.item_id
+     order_item.count = cart_item.count
+     order_item.save
+    end
+    cart_items.destroy_all
+  end
+
  def order_params
-  params.require(:order).permit(:postcode, :address,  :shipping_cost, :total_payment, :payment_option, :status)
+  params.require(:order).permit(:postcode, :address,  :shipping_cost, :total_payment, :payment_option,:status)
  end
 
 
   def address_params
-    params.require(:order).permit(:payment, :address_a, :postcode, :name, :address, :order)
+    params.require(:order).permit(:total_payment, :address_a, :postcode, :name, :address, :order)
   end
 end

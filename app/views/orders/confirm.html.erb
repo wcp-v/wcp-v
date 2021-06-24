@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col-xs-8">
-      <%= form_with(model: @order, local: true, url: orders_path, method: :post) do |f| %>
+      <%= form_with(model: @order, url: orders_path, local: true, method: :post) do |f| %>
       <% @total = 0 %>
       <table border="1">
         <thead>
