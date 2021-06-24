@@ -11,7 +11,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 
  def after_sign_in_path_for(resource)
   if resource_name == :admin
-     root_path
+     admin_root_path
   elsif resource_name == :customer
      root_path
   end
