@@ -66,6 +66,7 @@ class OrdersController < ApplicationController
      order_item.order_id = order.id
      order_item.item_id = cart_item.item_id
      order_item.count = cart_item.count
+     order_item.price = cart_item.item.price
      order_item.save
     end
     cart_items.destroy_all
