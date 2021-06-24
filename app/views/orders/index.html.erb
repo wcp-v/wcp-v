@@ -15,7 +15,7 @@
   <% @orders.each do |orders| %>
   <% orders.order_items.each do |ordered_item| %>
     <tr>
-      <td height="75"><%= orders.created_at.strftime("%Y-%m-%d") %></td>
+      <td height="75"><%= orders.created_at.format: :short %></td>
       <td height="75">
         <%= orders.postcode %><br>
         <%= orders.address %><br>
