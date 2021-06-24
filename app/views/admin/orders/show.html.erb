@@ -1,17 +1,17 @@
 <div class="container">
   <div class="admin-order-show pt-5">
-    <h4 class="pb-3">注文履歴一覧</h4>
+    <h4 class="pb-3">注文履歴詳細</h4>
     <table class="w-100 admin-order-details admin-customer-show">
       <tr class="row pb-2">
         <th class="col-md-2">購入者</th>
         <td class="col-md-10">
-          <!--%= link_to @order.customer.name, admin_customer_path(@order.customer), class: "text-dark" %>-->
+          <%= link_to @order.customer.last_name + @order.customer.first_name, admin_customer_path(@order.customer), class: "text-dark" %>
         </td>
       </tr>
       <tr class="row pb-2">
         <th class="col-md-2">注文日</th>
         <td class="col-md-10">
-          <%= l @order.created_at, format: :short %>
+          <%= @order.created_at.to_s(:datetime_jp) %>
         </td>
       </tr>
       <tr class="row pb-2">
