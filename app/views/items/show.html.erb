@@ -7,7 +7,7 @@
     <div class="col-md-6">
       <h4><%= @item.name %></h4>
       <p style="height: 100px"><%= @item.introduction %></p>
-      <p><strong style="font-size: 22px; margin-right: 4px;">¥ <%= (@item.price * 1.1).to_i.to_s(:delimited) %></strong><span style="font-size: 12px;">(税込)</span></p>
+      <p><strong style="font-size: 22px; margin-right: 4px;">¥<%= @item.tax_included_price.to_s(:delimited) %></strong><span style="font-size: 12px;">(税込)</span></p>
 
       <div class="form-inline">
       <% if customer_signed_in? %>
