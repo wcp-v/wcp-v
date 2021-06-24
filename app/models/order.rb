@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   }
 
   
-  enum payment: {クレジットカード: 0, 銀行振り込み: 1 }
+  enum payment_option: {クレジットカード: 0, 銀行振り込み: 1 }
 
   attr_accessor :address_a, :order
   validates :total_payment, presence: true

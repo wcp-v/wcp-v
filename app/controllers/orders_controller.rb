@@ -20,13 +20,13 @@ class OrdersController < ApplicationController
     if params[:order][:address_a] == "0"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
-      @order.address = current_customer.last_name + current_customer.first_name
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_a] == "1"
       @sta = params[:order][:order].to_i
       @order_address = Address.find(@sta)
       @order.postcode = @order_address.postcode
       @order.address  = @order_address.address
-      @order.address  = @order_address.address
+      @order.name  = @order_address.name
     elsif params[:order][:address_a] == "2"
       @order.address = params[:order][:postcode]
       @order.address = params[:order][:address]
