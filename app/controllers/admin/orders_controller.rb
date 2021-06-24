@@ -1,8 +1,6 @@
 class Admin::OrdersController < ApplicationController
     
     before_action :authenticate_admin!
-    
-  
   
   def show
      @order = Order.find(params[:id])
@@ -21,10 +19,11 @@ class Admin::OrdersController < ApplicationController
     redirect_to admin_root_path
   end      
   
+  
   private
 
     # def order_item_params
-    #   params.permit(:maiking_status).merge(maiking_status: 1)
+    #   params.permit(:status).merge(status: 1)
     # end
 
     def order_params

@@ -12,14 +12,19 @@
         <tr>
           <td>
             <%= link_to admin_order_path(order), class: "text-dark" do %>
-              <%= order.created_at %>
+              <%= order.created_at.to_s(:datetime_jp) %>
             <% end %>
           </td>
           <td>
-            <!--%= order.customers.name %>-->
+            <%= order.customer.last_name + order.customer.first_name %>
           </td>
           <td>
-            <!--%= order.order_items.to_s(:delimited) %>-->
+            <% total_count = 0 %>
+            <% order_items = order.order_items.all %>
+            <% order_items.each do |order_item| %>
+              <% total_count += order_item.count %>
+            <% end %>
+            <%= total_count %>
           </td>
           <td>
             <%= order.status %>

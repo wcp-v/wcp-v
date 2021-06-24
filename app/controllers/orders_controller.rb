@@ -1,9 +1,9 @@
-class OrdersController < ApplicationController      
+class OrdersController < ApplicationController
   include ApplicationHelper
-  
-  
+
+
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
     @customer = current_customer
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
       @order.address = params[:order][:address]
     end
   end
-  
+
   def create
     @customer = current_customer
     obj = order_params
@@ -47,18 +47,18 @@ class OrdersController < ApplicationController
 
   def thanks
   end
-  
+
   def index
     @orders = current_customer.orders
   end
-  
+
   def show
     @order = Order.find(params[:id])
     @order_items = @order.order_items
   end
-  
+
   private
-  
+
   def create_all_ordered_items(order)
     cart_items = current_customer.cart_items
     cart_items.each do |cart_item|
