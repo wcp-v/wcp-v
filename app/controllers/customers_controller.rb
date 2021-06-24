@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   # before_action :authenticate_cutomer! アプリケーションコントローラいじる
+  # before_action :authenticate_any!
   
   def show
     @customer = current_customer
