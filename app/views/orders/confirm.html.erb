@@ -22,8 +22,8 @@
             <span><%= attachment_image_tag cart_item.item, :image, size: "40x40",  fallback: "cake.jpg" %></span>
             <span><%= cart_item.item.name %></span>
           </th>
-          <td height="50"><%= cart_item.item.price.to_s(:delimited) %>円</td>
-          <td height="50"><%= cart_item.count %>個</td>
+          <td height="50"><%= cart_item.item.price.to_s(:delimited) %></td>
+          <td height="50"><%= cart_item.count %></td>
           <td height="50"><%= ((cart_item.item.price*1).floor*cart_item.count).to_s(:delimited) %><% @total += ((cart_item.item.price*1.1).floor*cart_item.count) %></td>
         </tbody>
         <% end %>
@@ -57,7 +57,7 @@
         <th><h4>お届け先</h4></th>
         <td>
           <span><%= @order.postcode %></span>
-          <span style="padding:0 5px;"><%= @order.address %></span><br
+          <span style="padding:0 5px;"><%= @order.address %></span><br>
           <span><%= @order.name %></span>
         </td>
       </tr>
