@@ -19,12 +19,12 @@
         <% @cart_items.each do |cart_item| %>
         <tbody>
           <th height="50">
-            <span><%= attachment_image_tag cart_item.product, :image, size: "40x40",  fallback: "cake.jpg" %></span>
-            <span><%= cart_item.product.name %></span>
+            <span><%= attachment_image_tag cart_item.item, :image, size: "40x40",  fallback: "cake.jpg" %></span>
+            <span><%= cart_item.item.name %></span>
           </th>
-          <td height="50"><%= cart_item.product.price.to_s(:delimited) %>円</td>
-          <td height="50"><%= cart_item.quantity %>個</td>
-          <td height="50"><%= ((cart_item.product.price*1.1).floor*cart_item.quantity).to_s(:delimited) %><% @total += ((cart_item.product.price*1).floor*cart_item.quantity) %></td>
+          <td height="50"><%= cart_item.item.price.to_s(:delimited) %>円</td>
+          <td height="50"><%= cart_item.count %>個</td>
+          <td height="50"><%= ((cart_item.item.price*1).floor*cart_item.count).to_s(:delimited) %><% @total += ((cart_item.item.price*1.1).floor*cart_item.count) %></td>
         </tbody>
         <% end %>
       </table>
@@ -50,7 +50,7 @@
     <table class="table table-borderless">
       <tr>
         <th><h4>支払い方法</h4></th>
-        <td><%= @order.payment %></td>
+        <td><%= @order.payment_option %></td>
         <%= f.hidden_field :payment %>
       </tr>
       <tr>

@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @total = 0
     obj = address_params
-    obj[total_payment] = obj[:total_payment].to_i
+    obj[:total_payment] = obj[:total_payment].to_i
     @order = Order.new(obj)
     if params[:order][:address_a] == "0"
       @order.postcode = current_customer.postcode
@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.orders_items
+    @order_items = @order.order_items
   end
   
   private
