@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
     
-    before_action :customer_shut_out
+    before_action :authenticate_admin!
     
   
   
