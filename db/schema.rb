@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_06_20_095912) do
+=======
+ActiveRecord::Schema.define(version: 2021_06_24_033732) do
+>>>>>>> origin/develop
 
   create_table "addresses", force: :cascade do |t|
     t.string "address"
@@ -56,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.string "telephone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -75,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "genre_id"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -85,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.datetime "updated_at", null: false
     t.integer "order_id"
     t.integer "item_id"
-    t.integer "status"
+    t.integer "status", default: 0
   end
 
   create_table "orders", force: :cascade do |t|
@@ -97,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_095912) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "customer_id"
-    t.integer "status"
-    t.integer "payment_option"
+    t.integer "status", default: 0
+    t.integer "payment_option", default: 0
   end
 
   create_table "users", force: :cascade do |t|

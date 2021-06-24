@@ -1,5 +1,5 @@
-class OrdersController < ApplicationController
-      include ApplicationHelper
+class OrdersController < ApplicationController      
+  include ApplicationHelper
   
   
   before_action :authenticate_customer!
