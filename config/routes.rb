@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
     }
 
+  resource :customers, only: [:show, :edit, :update]
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
 
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
@@ -18,9 +21,6 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
 
 
-  resource :customers, only: [:show, :edit, :update]
-  get 'customers/unsubscribe' => 'customers#unsubscribe'
-  patch 'customers/withdraw' => 'customers#withdraw'
   resources :items, only: [:index, :show]
   
   post '/orders/confirm' => 'orders#confirm'
