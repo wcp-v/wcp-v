@@ -26,6 +26,9 @@
               <li class="nav-item nav-link ml-auto"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             </ul>
           </div>
+          <div class="text-right">
+            <br><input type="search" class="st-Header_searchInput" autocomplete="off" placeholder="Serch" value name="q" required>
+          </div>
         <% elsif customer_signed_in? %>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <%= "ようこそ #{current_customer.last_name + current_customer.first_name} さん！" %>
@@ -49,6 +52,5 @@
       </nav>
     </header>
     <%= yield %>
-    
   </body>
 </html>
