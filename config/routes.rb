@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
     }
 
+  resource :customers, only: [:show, :edit, :update]
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
 
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
@@ -17,14 +21,13 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
 
 
-  resource :customers, only: [:show, :edit, :update]
-  get 'customers/unsubscribe' => 'customers#unsubscribe'
-  patch 'customers/withdraw' => 'customers#withdraw'
   resources :items, only: [:index, :show]
-
-  resources :orders, only: [:new, :create, :index, :show]
-  get 'orders/confirm' => 'orders#confirm'
+  
+  post '/orders/confirm' => 'orders#confirm'
   get 'orders/thanks' => 'orders#thanks'
+  resources :orders, only: [:new, :create, :index, :show]
+  
+  
 
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, only: [:index, :update, :destroy, :create]
@@ -35,7 +38,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
 
-    root to: 'admins#top'
+    root to: 'homes#top'
 
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 
