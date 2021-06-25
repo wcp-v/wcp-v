@@ -39,10 +39,10 @@
       <tr class="row pb-2">
         <th class="col-md-2">注文ステータス</th>
         <td class="col-md-10">
-          <!--%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>-->
-            <!--%= f.select :order_status, options_for_select(Order.status, selected: Order.order_statuses[@order.status]) %>-->
-            <!--%= f.submit "更新", class: "btn btn-success ml-4"%>-->
-          <!--% end %>-->
+          <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
+            <%= f.select :status, ['入金待ち', '入金確認', '製作中', '発送準備中', '発送済み'] %>
+            <%= f.submit "更新", class: "btn btn-success ml-4"%>
+          <% end %>
         </td>
       </tr>
     </table>
@@ -63,10 +63,12 @@
             <td class="text-center"><%= order_item.count.to_s(:delimited) %></td>
             <td class="text-center"><%= (order_item.price.to_i * order_item.count.to_i).to_s(:delimited) %></td>
             <td>
-              <!--%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>-->
-                <!--%= f.select :maiking_status, options_for_select(OrderItem.maiking_statuses, selected: OrderItem.maiking_statuses[order_item.maiking_status]) %>-->
-                <!--%= f.submit "更新", class: "btn btn-success ml-3" %>-->
-              <!--% end %>-->
+              <%= form_with model: order_item, url: admin_order_order_item_path(order_item.id), local: true do |f| %>
+                <!--%= f.select :status, {'着手不可':'着手不可', '製作待ち':'製作待ち', '製作中':'製作中', '製作完了':'製作完了'} %>-->
+                <!--%= f.select :status, options_for_select(OrderItem.statuses, selected: OrderItem.statuses[order_item.status]) %>-->
+                <%= f.select :status, [["着手不可", "着手不可"], ["製作待ち","製作待ち"], ["製作中","製作中"], ["製作完了","製作完了"]] %>
+                <%= f.submit "更新", class: "btn btn-success ml-3" %>
+              <% end %>
             </td>
           </tr>
         <% end %>
