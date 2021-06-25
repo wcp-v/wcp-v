@@ -13,20 +13,23 @@
       <th width="120" height="50" bgcolor="#C0C0C0">注文詳細</th>
     </tr>
   <% @orders.each do |orders| %>
-  <% orders.order_items.each do |ordered_item| %>
     <tr>
-      <td height="75"><%= l orders.created_at, format: :short %></td>
+      <td height="75"><%= orders.created_at.to_s(:datetime_jp) %></td>
       <td height="75">
-        <%= orders.postcode %><br>
+        〒<%= orders.postcode.to_s.insert(3, "-") %><br>
         <%= orders.address %><br>
         <%= orders.name %><br>
       </td>
-      <td height="75"><%= ordered_item.item.name %></td>
-      <td height="75"><%= orders.total_payment + orders.shipping_cost  %></td>
+      <td height="75">
+        <% items = orders.order_items.all %>
+        <% items.each do |item| %>
+          <%= item.item.name %><br>
+        <% end %>
+      </td>
+      <td height="75"><%= (orders.total_payment + orders.shipping_cost).to_s(:delimited) %>円</td>
       <td height="75"><%= orders.status %></td>
       <td height="75"><%= link_to '表示する', order_path(orders.id), class: 'btn btn-primary' %></td>
     </tr>
-  <% end %>
   <% end %>
 
   </table>

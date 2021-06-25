@@ -7,12 +7,12 @@
           <tbody>
               <tr>
                 <th class="info border border-dark table-active order">注文日</th>
-          	  <td class="text-left border border-dark order-content"><%= l @order.created_at, format: :short %></td>
+          	  <td class="text-left border border-dark order-content"><%= @order.created_at.to_s(:datetime_jp) %></td>
               </tr>
               <tr>
               　<th class="info border border-dark table-active">配送先</th>
                 <td class="text-left border border-dark">
-                  <%= @order.postcode %><br>
+                  〒<%= @order.postcode.to_s.insert(3, "-") %><br>
                   <%= @order.address %><br>
                   <%= @order.name %>
                 </td>
@@ -60,9 +60,9 @@
         	<% @order_items.each do |order_item| %>
             <tr>
   	        <td class="border border-dark"><%= order_item.item.name %></td>
-  	        <td class="text-right border border-dark"><%= order_item.price.to_s(:delimited) %>円</td>
+  	        <td class="text-right border border-dark"><%= order_item.item.tax_included_price.to_s(:delimited) %>円</td>
   	        <td class="text-right border border-dark"><%= order_item.count%></td>
-  	        <td class="text-right border border-dark"><%= (order_item.price*order_item.count).to_s(:delimited) %>円</td>
+  	        <td class="text-right border border-dark"><%= (order_item.item.tax_included_price * order_item.count).to_s(:delimited) %>円</td>
             </tr>
           <% end %>
         </table>
