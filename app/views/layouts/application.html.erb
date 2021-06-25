@@ -21,7 +21,9 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item nav-link ml-auto"><%= link_to "商品一覧", admin_items_path %></li>
               <li class="nav-item nav-link ml-auto"><%= link_to "会員一覧", admin_customers_path %></li>
-              <li class="nav-item nav-link ml-auto"><%= link_to "注文商品一覧", admin_root_path %></li>
+              <li class="nav-item nav-link ml-auto"><%= link_to "注文商品一覧", admin_root_path(order_sort: 0)
+
+ %></li>
               <li class="nav-item nav-link ml-auto"><%= link_to "ジャンル一覧", admin_genres_path %></li>
               <li class="nav-item nav-link ml-auto"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
             </ul>
