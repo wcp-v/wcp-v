@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @customer = current_customer
+    @all = Item.all
     @address = Address.all
     @orders = Order.all
   end
