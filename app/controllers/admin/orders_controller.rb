@@ -8,7 +8,11 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
     @order.update(order_params)
+    if @order.status == "入金確認"
+	     @order_items.update_all(status: 1)
+	  end
     redirect_to admin_root_path
   end
 
