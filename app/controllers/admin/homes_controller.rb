@@ -9,6 +9,6 @@ class Admin::HomesController < ApplicationController
       @orders = Order.page(params[:page]).per(10)
     end
       @orders_page = Order.page(params[:page]).per(10)
-    end
-
+ end
+ 
 end
