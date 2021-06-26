@@ -8,7 +8,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @customer = current_customer
     @all = Item.all
-    @address = Address.all
+    @address = @customer.addresses
+    # Address.where(customrer_id: @customer.id)
     @orders = Order.all
   end
 
