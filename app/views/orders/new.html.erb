@@ -14,7 +14,7 @@
   <label style="margin-left:190px;"><%= f.radio_button :address_a, 1 %> 登録済住所から選択</label><br>
   <div>
     <label style="margin-left: 220px;">
-    <%= f.collection_select(:order, @address.all, :id, :name )%><br>
+    <%= f.collection_select(:order, @address, :id, :name)%><br>
   </div>
   <label style="margin-left: 190px;"><%= f.radio_button :address_a, 2 %> 新しいお届け先</label>
   <div style="display: flex; margin-left:15% ;">
